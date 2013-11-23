@@ -1,108 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.accenture.acntech</groupId>
-    <artifactId>parent</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <packaging>pom</packaging>
-    <name>parent</name>
-    <description>Parent project</description>
+	<groupId>com.accenture.acntech</groupId>
+	<artifactId>acn-batch-parent</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	<name>acn-batch-parent</name>
+	<description>Parent project</description>
 
-    <!-- PROPERTIES -->
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	<!-- PROPERTIES -->
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <downloadSources>true</downloadSources>
-        <downloadJavadocs>true</downloadJavadocs>
+		<downloadSources>true</downloadSources>
+		<downloadJavadocs>true</downloadJavadocs>
 
-        <java.version>1.7</java.version>
-        <source.encoding>UTF-8</source.encoding>
+		<java.version>1.7</java.version>
+		<source.encoding>UTF-8</source.encoding>
 
-        <!-- Plugins -->
-        <version.maven-sonar-plugin>2.0</version.maven-sonar-plugin>
-        <version.m2e.lifecycle-mapping>1.0.0</version.m2e.lifecycle-mapping>
+		<endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
 
-        <!-- Dependencies -->
-    </properties>
+		<!-- Plugins -->
+		<version.maven-compiler-plugin>3.1</version.maven-compiler-plugin>
+		<version.maven-war-plugin>2.3</version.maven-war-plugin>
+		<version.maven-dependency-plugin>2.6</version.maven-dependency-plugin>
+		<version.maven-sonar-plugin>2.0</version.maven-sonar-plugin>
+		<version.m2e.lifecycle-mapping>1.0.0</version.m2e.lifecycle-mapping>
 
-    <!-- MODULES -->
-    <modules>
-        <module>common</module>
-        <module>acn-batch-webapp</module>
-    </modules>
+		<!-- Dependencies -->
+		<version.javaee-web-api>7.0</version.javaee-web-api>
+		<version.javaee-endorsed-api>7.0</version.javaee-endorsed-api>
+	</properties>
 
-    <!-- REPOSITORIES -->
-    <repositories>
-    </repositories>
+	<!-- MODULES -->
+	<modules>
+		<module>common</module>
+		<module>webapp</module>
+	</modules>
 
-    <!-- PLUGIN REPOSITORIES -->
-    <pluginRepositories>
-    </pluginRepositories>
+	<!-- REPOSITORIES -->
+	<repositories>
+	</repositories>
 
-    <!-- DEPENDENCIES -->
-    <dependencyManagement>
-        <dependencies>
-        </dependencies>
-    </dependencyManagement>
+	<!-- PLUGIN REPOSITORIES -->
+	<pluginRepositories>
+	</pluginRepositories>
 
-    <!-- MAVEN PLUGINS -->
-    <build>
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-war-plugin</artifactId>
-                    <configuration>
-                        <failOnMissingWebXml>false</failOnMissingWebXml>
-                    </configuration>
-                </plugin>
+	<!-- DEPENDENCIES -->
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>javax</groupId>
+				<artifactId>javaee-web-api</artifactId>
+				<version>${version.javaee-web-api}</version>
+				<scope>provided</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 
-                <plugin>
-                    <groupId>org.codehaus.mojo</groupId>
-                    <artifactId>sonar-maven-plugin</artifactId>
-                    <version>${version.maven-sonar-plugin}</version>
-                </plugin>
+	<!-- MAVEN PLUGINS -->
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>${version.maven-compiler-plugin}</version>
+					<configuration>
+						<source>${java.version}</source>
+						<target>${java.version}</target>
+						<compilerArguments>
+							<endorseddirs>${endorsed.dir}</endorseddirs>
+						</compilerArguments>
+					</configuration>
+				</plugin>
 
-                <plugin>
-                    <groupId>org.eclipse.m2e</groupId>
-                    <artifactId>lifecycle-mapping</artifactId>
-                    <version>${version.m2e.lifecycle-mapping}</version>
-                    <configuration>
-                        <lifecycleMappingMetadata>
-                            <pluginExecutions>
-                                <pluginExecution>
-                                    <pluginExecutionFilter>
-                                        <groupId>org.apache.maven.plugins</groupId>
-                                        <artifactId>maven-ear-plugin</artifactId>
-                                        <versionRange>[${version.maven-ear-plugin},)</versionRange>
-                                        <goals>
-                                            <goal>execute</goal>
-                                        </goals>
-                                    </pluginExecutionFilter>
-                                    <action>
-                                        <ignore />
-                                    </action>
-                                </pluginExecution>
-                            </pluginExecutions>
-                        </lifecycleMappingMetadata>
-                    </configuration>
-                </plugin>
-            </plugins>
-        </pluginManagement>
-    </build>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-war-plugin</artifactId>
+					<version>${version.maven-war-plugin}</version>
+					<configuration>
+						<failOnMissingWebXml>false</failOnMissingWebXml>
+					</configuration>
+				</plugin>
 
-    <!-- PROFILES -->
-    <profiles>
-        <profile>
-            <id>default</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-dependency-plugin</artifactId>
+					<version>${version.maven-dependency-plugin}</version>
+					<executions>
+						<execution>
+							<phase>validate</phase>
+							<goals>
+								<goal>copy</goal>
+							</goals>
+							<configuration>
+								<outputDirectory>${endorsed.dir}</outputDirectory>
+								<silent>true</silent>
+								<artifactItems>
+									<artifactItem>
+										<groupId>javax</groupId>
+										<artifactId>javaee-endorsed-api</artifactId>
+										<version>${version.javaee-endorsed-api}</version>
+										<type>jar</type>
+									</artifactItem>
+								</artifactItems>
+							</configuration>
+						</execution>
+					</executions>
+				</plugin>
 
-            <properties>
-                <skip.intergration.tests>true</skip.intergration.tests>
-            </properties>
-        </profile>
-    </profiles>
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>sonar-maven-plugin</artifactId>
+					<version>${version.maven-sonar-plugin}</version>
+				</plugin>
+
+				<plugin>
+					<groupId>org.eclipse.m2e</groupId>
+					<artifactId>lifecycle-mapping</artifactId>
+					<version>${version.m2e.lifecycle-mapping}</version>
+					<configuration>
+						<lifecycleMappingMetadata>
+							<pluginExecutions>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>org.apache.maven.plugins</groupId>
+										<artifactId>maven-dependency-plugin</artifactId>
+										<versionRange>[${version.maven-dependency-plugin},)</versionRange>
+										<goals>
+											<goal>copy</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore />
+									</action>
+								</pluginExecution>
+							</pluginExecutions>
+						</lifecycleMappingMetadata>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+
+	<!-- PROFILES -->
+	<profiles>
+		<profile>
+			<id>default</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+
+			<properties>
+				<skip.intergration.tests>true</skip.intergration.tests>
+			</properties>
+		</profile>
+	</profiles>
 </project>
