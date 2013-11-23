@@ -16,12 +16,14 @@
 	<name>acn-batch-job</name>
 
 	<properties>
+        <org.apache.poi.version>3.9</org.apache.poi.version>
 	</properties>
 
 	<dependencies>
 		<dependency>
 			<groupId>javax</groupId>
-			<artifactId>javaee-web-api</artifactId>
+			<artifactId>javaee-api</artifactId>
+            <version>7.0</version>
 		</dependency>
         <dependency>
             <groupId>org.apache.poi</groupId>
