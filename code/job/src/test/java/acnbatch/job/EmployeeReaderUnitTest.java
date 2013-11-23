@@ -28,8 +28,9 @@ public class EmployeeReaderUnitTest {
 
         Assert.assertEquals("Navn 1", record.getName());
         Assert.assertEquals("251244", record.getPersonalNumber());
-        Assert.assertEquals("navn1@accenture.com", record.getEmail());
+        Assert.assertEquals("navn1.etternavn@accenture.com", record.getEmail());
         Assert.assertNull(record.getPhone());
+        Assert.assertEquals("navn1.etternavn", record.getEnterpriseId());
 
         for (String name : remaining_names) {
             record = reader.readItem();
