@@ -2,6 +2,7 @@
     <step id="step1">
         <chunk item-count="1">
             <reader ref="employeeReader"/>
+            <processor ref="employeeProcessor"/>
             <writer ref="employeeWriter"/>
         </chunk>
     </step>
