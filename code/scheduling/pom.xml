@@ -9,10 +9,10 @@
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>acn-batch-job</artifactId>
+	<artifactId>acn-batch-scheduling</artifactId>
 	<packaging>jar</packaging>
-	<name>acn-batch-job</name>
-	<description>Module for batch jobs</description>
+	<name>acn-batch-scheduling</name>
+	<description>Module for batch scheduling</description>
 
 	<properties>
 	</properties>
@@ -21,6 +21,11 @@
 		<dependency>
 			<groupId>javax</groupId>
 			<artifactId>javaee-web-api</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.quartz-scheduler</groupId>
+			<artifactId>quartz</artifactId>
 		</dependency>
 	</dependencies>
 
