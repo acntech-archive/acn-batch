@@ -42,7 +42,6 @@
 		<version.javaee>7.0</version.javaee>
 
 		<!-- Utils -->
-		<version.quartz>2.2.1</version.quartz>
 	</properties>
 
 	<!-- MODULES -->
@@ -118,13 +117,7 @@
 				<version>${version.javaee}</version>
 				<scope>provided</scope>
 			</dependency>
-
 			<!-- Utils -->
-			<dependency>
-				<groupId>org.quartz-scheduler</groupId>
-				<artifactId>quartz</artifactId>
-				<version>${version.quartz}</version>
-			</dependency>
 		</dependencies>
 	</dependencyManagement>
 

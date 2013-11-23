@@ -1,5 +1,5 @@
 package acnbatch.scheduling;
 
-public class Placeholder {
+public class BatchTimerTest {
 
 }
