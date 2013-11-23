@@ -39,8 +39,7 @@
 		<version.mockito>1.9.5</version.mockito>
 
 		<!-- Java EE -->
-		<version.javaee-web-api>7.0</version.javaee-web-api>
-		<version.javaee-endorsed-api>7.0</version.javaee-endorsed-api>
+		<version.javaee>7.0</version.javaee>
 
 		<!-- Utils -->
 		<version.quartz>2.2.1</version.quartz>
@@ -115,8 +114,8 @@
 			<!-- Java EE -->
 			<dependency>
 				<groupId>javax</groupId>
-				<artifactId>javaee-web-api</artifactId>
-				<version>${version.javaee-web-api}</version>
+				<artifactId>javaee-api</artifactId>
+				<version>${version.javaee}</version>
 				<scope>provided</scope>
 			</dependency>
 
@@ -172,7 +171,7 @@
 									<artifactItem>
 										<groupId>javax</groupId>
 										<artifactId>javaee-endorsed-api</artifactId>
-										<version>${version.javaee-endorsed-api}</version>
+										<version>${version.javaee}</version>
 										<type>jar</type>
 									</artifactItem>
 								</artifactItems>
