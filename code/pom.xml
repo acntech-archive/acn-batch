@@ -38,6 +38,7 @@
 	<modules>
 		<module>common</module>
 		<module>webapp</module>
+		<module>hello-jee7-martin</module>
 	</modules>
 
 	<!-- REPOSITORIES -->
