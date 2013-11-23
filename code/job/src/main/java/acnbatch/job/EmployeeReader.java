@@ -17,8 +17,8 @@ public class EmployeeReader extends AbstractItemReader {
 
 
     public static final int CELL_EMPLOYEE_NAME = 0;
-    public static final int CELL_EMPLOYEE_EMAIL = 1;
-    public static final int CELL_EMPLOYEE_PERSONAL_NUMBER = 2;
+    public static final int CELL_EMPLOYEE_EMAIL = 2;
+    public static final int CELL_EMPLOYEE_PERSONAL_NUMBER = 1;
     public static final int CELL_EMPLOYEE_PHONE = 3;
 
     private final InputStream inputStream;
@@ -43,8 +43,8 @@ public class EmployeeReader extends AbstractItemReader {
 
         EmployeeInputRecord employeeInputRecord = new EmployeeInputRecord();
         employeeInputRecord.setName(row.getCell(CELL_EMPLOYEE_NAME).getStringCellValue());
+        employeeInputRecord.setPersonalNumber(Integer.toString((int) row.getCell(CELL_EMPLOYEE_PERSONAL_NUMBER).getNumericCellValue()));
         employeeInputRecord.setEmail(row.getCell(CELL_EMPLOYEE_EMAIL).getStringCellValue());
-        employeeInputRecord.setPersonalNumber(row.getCell(CELL_EMPLOYEE_PERSONAL_NUMBER).getStringCellValue());
         employeeInputRecord.setPhone(row.getCell(CELL_EMPLOYEE_PHONE).getStringCellValue());
 
         return employeeInputRecord;

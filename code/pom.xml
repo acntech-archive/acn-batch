@@ -30,13 +30,25 @@
 		<version.m2e.lifecycle-mapping>1.0.0</version.m2e.lifecycle-mapping>
 
 		<!-- Dependencies -->
-		<version.javaee-web-api>7.0</version.javaee-web-api>
-		<version.javaee-endorsed-api>7.0</version.javaee-endorsed-api>
+		<!-- Logging -->
+		<version.slf4j>1.7.5</version.slf4j>
+		<version.logback>1.0.13</version.logback>
+
+		<!-- Testing -->
+		<version.junit>4.11</version.junit>
+		<version.mockito>1.9.5</version.mockito>
+
+		<!-- Java EE -->
+		<version.javaee>7.0</version.javaee>
+
+		<!-- Utils -->
+		<version.quartz>2.2.1</version.quartz>
 	</properties>
 
 	<!-- MODULES -->
 	<modules>
 		<module>common</module>
+		<module>scheduling</module>
 		<module>webapp</module>
 		<module>job</module>
 	</modules>
@@ -50,19 +62,69 @@
 	</pluginRepositories>
 
 	<!-- DEPENDENCIES -->
+	<dependencies>
+		<!-- Testing -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-core</artifactId>
+		</dependency>
+	</dependencies>
+
 	<dependencyManagement>
 		<dependencies>
+			<!-- Logging -->
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-api</artifactId>
+				<version>${version.slf4j}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>ch.qos.logback</groupId>
+				<artifactId>logback-classic</artifactId>
+				<version>${version.logback}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>ch.qos.logback</groupId>
+				<artifactId>logback-core</artifactId>
+				<version>${version.logback}</version>
+			</dependency>
+
+			<!-- Testing -->
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>${version.junit}</version>
+				<scope>test</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.mockito</groupId>
+				<artifactId>mockito-core</artifactId>
+				<version>${version.mockito}</version>
+				<scope>test</scope>
+			</dependency>
+
+			<!-- Java EE -->
 			<dependency>
 				<groupId>javax</groupId>
-				<artifactId>javaee-web-api</artifactId>
-				<version>${version.javaee-web-api}</version>
+				<artifactId>javaee-api</artifactId>
+				<version>${version.javaee}</version>
 				<scope>provided</scope>
 			</dependency>
-            <dependency>
-                <groupId>javax</groupId>
-                <artifactId>javaee-api</artifactId>
-                <version>7.0</version>
-            </dependency>
+
+			<!-- Utils -->
+			<dependency>
+				<groupId>org.quartz-scheduler</groupId>
+				<artifactId>quartz</artifactId>
+				<version>${version.quartz}</version>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 
@@ -109,7 +171,7 @@
 									<artifactItem>
 										<groupId>javax</groupId>
 										<artifactId>javaee-endorsed-api</artifactId>
-										<version>${version.javaee-endorsed-api}</version>
+										<version>${version.javaee}</version>
 										<type>jar</type>
 									</artifactItem>
 								</artifactItems>

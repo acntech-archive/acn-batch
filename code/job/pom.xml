@@ -16,7 +16,6 @@
 	<name>acn-batch-job</name>
 
 	<properties>
-        <org.apache.poi.version>3.9</org.apache.poi.version>
 	</properties>
 
 	<dependencies>
@@ -24,10 +23,6 @@
 			<groupId>javax</groupId>
 			<artifactId>javaee-web-api</artifactId>
 		</dependency>
-        <dependency>
-            <groupId>javax</groupId>
-            <artifactId>javaee-api</artifactId>
-        </dependency>
         <dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi</artifactId>
