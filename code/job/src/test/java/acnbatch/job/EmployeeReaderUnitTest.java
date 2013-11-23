@@ -20,7 +20,8 @@ public class EmployeeReaderUnitTest {
     public void testReadEmployeesFromXlsx() throws Exception {
         InputStream employeeData = this.getClass().getClassLoader().getResourceAsStream("test_data.xlsx");
 
-        EmployeeReader reader = new EmployeeReader(employeeData);
+        EmployeeReader reader = new EmployeeReader();
+        reader.setInputStream(employeeData);
         reader.open(null);
 
         EmployeeInputRecord record = reader.readItem();
@@ -28,7 +29,7 @@ public class EmployeeReaderUnitTest {
         Assert.assertEquals("Navn 1", record.getName());
         Assert.assertEquals("251244", record.getPersonalNumber());
         Assert.assertEquals("navn1@accenture.com", record.getEmail());
-        Assert.assertEquals("AD/navn1", record.getPhone()); // TODO: Where to obtain phone number? Not part of XLSX
+        Assert.assertNull(record.getPhone());
 
         for (String name : remaining_names) {
             record = reader.readItem();
