@@ -2,17 +2,17 @@ package acnbatch.job.domain;
 
 public class EmployeeInputRecord {
 
-    private String personelNumber;
+    private String personalNumber;
     private String name;
     private String email;
     private String phone;
 
-    public String getPersonelNumber() {
-        return personelNumber;
+    public String getPersonalNumber() {
+        return personalNumber;
     }
 
-    public void setPersonelNumber(String personelNumber) {
-        this.personelNumber = personelNumber;
+    public void setPersonalNumber(String personalNumber) {
+        this.personalNumber = personalNumber;
     }
 
     public String getName() {

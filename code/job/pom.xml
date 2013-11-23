@@ -9,10 +9,11 @@
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 
+	<groupId>com.accenture.acntech.webapp</groupId>
 	<artifactId>acn-batch-job</artifactId>
+	<version>1.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
 	<name>acn-batch-job</name>
-	<description>Module for batch jobs</description>
 
 	<properties>
 	</properties>
@@ -20,8 +21,18 @@
 	<dependencies>
 		<dependency>
 			<groupId>javax</groupId>
-			<artifactId>javaee-api</artifactId>
+			<artifactId>javaee-web-api</artifactId>
 		</dependency>
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi</artifactId>
+            <version>${org.apache.poi.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <version>${org.apache.poi.version}</version>
+        </dependency>
 	</dependencies>
 
 	<build>
