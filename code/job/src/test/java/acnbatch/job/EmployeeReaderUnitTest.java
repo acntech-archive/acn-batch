@@ -37,6 +37,9 @@ public class EmployeeReaderUnitTest {
             Assert.assertEquals(name, record.getName());
         }
 
+        // By now we should have read all rows, and the next row should be null.
+        Assert.assertNull(reader.readItem());
+
         reader.close();
     }
 

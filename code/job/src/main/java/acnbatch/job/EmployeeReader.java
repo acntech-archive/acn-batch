@@ -49,6 +49,9 @@ public class EmployeeReader extends AbstractItemReader {
 
     @Override
     public EmployeeInputRecord readItem() throws Exception {
+        if(!rowIterator.hasNext())
+            return null;
+
         Row row = rowIterator.next();
 
         EmployeeInputRecord employeeInputRecord = new EmployeeInputRecord();
