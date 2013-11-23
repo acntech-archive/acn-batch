@@ -7,8 +7,8 @@ import java.io.InputStream;
 import java.io.Serializable;
 import java.util.Iterator;
 
+import acnbatch.job.domain.EmployeeInputRecord;
 import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 
@@ -16,13 +16,17 @@ import org.apache.poi.ss.usermodel.WorkbookFactory;
 public class EmployeeReader extends AbstractItemReader {
 
 
+    public static final int CELL_EMPLOYEE_NAME = 0;
+    public static final int CELL_EMPLOYEE_EMAIL = 1;
+    public static final int CELL_EMPLOYEE_PERSONAL_NUMBER = 2;
+    public static final int CELL_EMPLOYEE_PHONE = 3;
+
     private final InputStream inputStream;
     private Iterator<Row> rowIterator;
 
     @Inject
     public EmployeeReader(InputStream workbookInputStream) {
         this.inputStream = workbookInputStream;
-
     }
 
     @Override
@@ -34,8 +38,16 @@ public class EmployeeReader extends AbstractItemReader {
     }
 
     @Override
-    public Row readItem() throws Exception {
-        return rowIterator.next();
+    public EmployeeInputRecord readItem() throws Exception {
+        Row row = rowIterator.next();
+
+        EmployeeInputRecord employeeInputRecord = new EmployeeInputRecord();
+        employeeInputRecord.setName(row.getCell(CELL_EMPLOYEE_NAME).getStringCellValue());
+        employeeInputRecord.setEmail(row.getCell(CELL_EMPLOYEE_EMAIL).getStringCellValue());
+        employeeInputRecord.setPersonalNumber(row.getCell(CELL_EMPLOYEE_PERSONAL_NUMBER).getStringCellValue());
+        employeeInputRecord.setPhone(row.getCell(CELL_EMPLOYEE_PHONE).getStringCellValue());
+
+        return employeeInputRecord;
     }
 
     @Override

@@ -15,9 +15,6 @@ public class EmployeeReaderUnitTest {
         EmployeeReader reader = new EmployeeReader(employeeData);
         reader.open(null);
 
-        Row rowOne = reader.readItem();
-
-        
     }
 
 }
