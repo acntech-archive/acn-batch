@@ -3,3 +3,12 @@
 .settings/
 target/
 generated/
+
+# IntelliJ stuff
+out/
+.idea/
+*.iml
+
+# Mac stuff
+.DS_Store
+
