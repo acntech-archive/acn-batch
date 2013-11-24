@@ -37,7 +37,7 @@ public class EmployeeReader extends AbstractItemReader {
 
     private InputStream getInputStream() {
         if(inputStream == null)
-            return getClass().getClassLoader().getResourceAsStream("test_data.xlsx");
+            return inputStream = getClass().getClassLoader().getResourceAsStream("test_data.xlsx");
         return inputStream;
     }
 

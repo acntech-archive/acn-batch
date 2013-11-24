@@ -2,8 +2,8 @@
     <step id="step1">
         <chunk item-count="1">
             <reader ref="employeeReader"/>
-            <processor ref="employeeProcessor"/>
-            <writer ref="employeeWriter"/>
+            <processor ref="acnbatch.job.EmployeeProcessor"/>
+            <writer ref="acnbatch.job.EmployeeWriter"/>
         </chunk>
     </step>
 </job>
