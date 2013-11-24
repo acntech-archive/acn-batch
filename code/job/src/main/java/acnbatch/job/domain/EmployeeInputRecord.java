@@ -1,9 +1,5 @@
 package acnbatch.job.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
-
 public class EmployeeInputRecord {
 
     private String personalNumber;
