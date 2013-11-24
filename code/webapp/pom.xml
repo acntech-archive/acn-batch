@@ -13,13 +13,11 @@
 	<packaging>war</packaging>
 	<name>acn-batch-webapp</name>
 
+	<!-- DEPENDENCIES -->
 	<dependencies>
-		<dependency>
-			<groupId>javax</groupId>
-			<artifactId>javaee-api</artifactId>
-		</dependency>
 	</dependencies>
 
+	<!-- MAVEN PLUGINS -->
 	<build>
 		<plugins>
 			<plugin>
