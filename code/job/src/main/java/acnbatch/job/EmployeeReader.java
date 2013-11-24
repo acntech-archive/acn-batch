@@ -1,16 +1,15 @@
 package acnbatch.job;
 
-import javax.batch.api.chunk.AbstractItemReader;
-import javax.inject.Inject;
-import javax.inject.Named;
-import java.io.InputStream;
-import java.io.Serializable;
-import java.util.Iterator;
-
 import acnbatch.job.domain.EmployeeInputRecord;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
+
+import javax.batch.api.chunk.AbstractItemReader;
+import javax.inject.Named;
+import java.io.InputStream;
+import java.io.Serializable;
+import java.util.Iterator;
 
 @Named
 public class EmployeeReader extends AbstractItemReader {
@@ -27,17 +26,14 @@ public class EmployeeReader extends AbstractItemReader {
 
     private Iterator<Row> rowIterator;
 
-    @Inject
-    public EmployeeReader() {
-    }
-
     public void setInputStream(InputStream inputStream) {
         this.inputStream = inputStream;
     }
 
     private InputStream getInputStream() {
-        if(inputStream == null)
+        if (inputStream == null) {
             return getClass().getClassLoader().getResourceAsStream("test_data.xlsx");
+        }
         return inputStream;
     }
 
@@ -46,18 +42,20 @@ public class EmployeeReader extends AbstractItemReader {
         Workbook workbook = WorkbookFactory.create(getInputStream());
 
         rowIterator = workbook.getSheetAt(0).rowIterator();
-        rowIterator.next(); // Skip header
+        if (rowIterator.hasNext()) {
+            rowIterator.next(); // Skip header
+        }
     }
 
     @Override
     public EmployeeInputRecord readItem() throws Exception {
-        if(!rowIterator.hasNext()) {
+        if (!rowIterator.hasNext()) {
             return null;
         }
 
         Row row = rowIterator.next();
 
-        if(row.getLastCellNum() == -1) {
+        if (row.getLastCellNum() == -1) {
             // Row doesn't contain any cells
             return null;
         }
