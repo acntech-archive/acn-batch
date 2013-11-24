@@ -47,6 +47,7 @@
 	<!-- MODULES -->
 	<modules>
 		<module>common</module>
+		<module>notification</module>
 		<module>scheduling</module>
 		<module>webapp</module>
 		<module>job</module>
