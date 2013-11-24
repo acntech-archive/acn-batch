@@ -7,6 +7,8 @@ public class EmployeeInputRecord {
     private String email;
     private String phone;
 
+    private String enterpriseId;
+
     public String getPersonalNumber() {
         return personalNumber;
     }
@@ -38,6 +40,12 @@ public class EmployeeInputRecord {
     public void setPhone(String phone) {
         this.phone = phone;
     }
-    
-    
+
+    public String getEnterpriseId() {
+        return enterpriseId;
+    }
+
+    public void setEnterpriseId(String enterpriseId) {
+        this.enterpriseId = enterpriseId;
+    }
 }
