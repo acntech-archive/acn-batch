@@ -10,10 +10,10 @@ import javax.jms.Queue;
 public class NotificationSender { 
 
     @Resource(lookup = "java:comp/DefaultJMSConnectionFactory")
-    private static ConnectionFactory connectionFactory;
+    private ConnectionFactory connectionFactory;
 
     @Resource(lookup = "jms/MyQueue")
-    private static Queue queue;
+    private Queue queue;
     
     public void sendMessage(String message) {
         try (JMSContext context = connectionFactory.createContext()) {
