@@ -1,5 +1,6 @@
-package acnbatch.scheduling;
+package acnbatch.job;
 
+import acnbatch.scheduling.Schedulable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

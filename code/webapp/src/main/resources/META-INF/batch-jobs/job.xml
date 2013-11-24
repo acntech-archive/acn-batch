@@ -1,9 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <job id="acnJob" xmlns="http://xmlns.jcp.org/xml/ns/javaee" version="1.0">
     <step id="step1">
         <chunk item-count="3">
-            <reader ref="acnbatch.job.EmployeeReader" />
-            <processor ref="acnbatch.job.EmployeeProcessor" />
-            <writer ref="acnbatch.job.EmployeeWriter" />
+            <reader ref="employeeReader" />
+            <processor ref="employeeProcessor" />
+            <writer ref="employeeWriter" />
         </chunk>
     </step>
 </job>
