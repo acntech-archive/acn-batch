@@ -30,7 +30,7 @@ public class EmployeeJobSchedule extends Schedulable {
 
     @Override
     public ScheduleExpression expression() {
-        return new ScheduleExpression().minute("*/1").hour("*");
+        return new ScheduleExpression().minute("*").second("*/10").hour("*");
     }
 
     @Override

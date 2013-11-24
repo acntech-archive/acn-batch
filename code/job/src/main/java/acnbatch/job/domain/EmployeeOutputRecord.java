@@ -1,23 +1,24 @@
 package acnbatch.job.domain;
 
+import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
 
 /**
  *
  * @author fagerholm
  */
 @Entity
-@Table(name ="EMPLOYEE")
+@Table(name ="employee")
+@XmlRootElement
 public class EmployeeOutputRecord implements Serializable {
     
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "ID")
     private Long id;
 
+    @Column(name = "PERSONAL_NUMBER")
     private String personalNumber;
 
     private String name;
@@ -26,6 +27,7 @@ public class EmployeeOutputRecord implements Serializable {
 
     private String phone;
 
+    @Column(name = "ENTERPRISE_ID")
     private String enterpriseId;
 
     public EmployeeOutputRecord() {
