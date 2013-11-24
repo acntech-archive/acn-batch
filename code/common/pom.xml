@@ -13,34 +13,4 @@
 	<packaging>jar</packaging>
 	<name>acn-batch-common</name>
 	<description>Module for common functionality and utils</description>
-
-	<!-- PROPERTIES -->
-	<properties>
-	</properties>
-
-	<!-- MODULES -->
-	<modules>
-	</modules>
-
-	<!-- REPOSITORIES -->
-	<repositories>
-	</repositories>
-
-	<!-- PLUGIN REPOSITORIES -->
-	<pluginRepositories>
-	</pluginRepositories>
-
-	<!-- DEPENDENCIES -->
-	<dependencies>
-	</dependencies>
-
-	<!-- MAVEN PLUGINS -->
-	<build>
-		<plugins>
-		</plugins>
-	</build>
-
-	<!-- PROFILES -->
-	<profiles>
-	</profiles>
 </project>

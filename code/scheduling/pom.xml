@@ -14,9 +14,7 @@
 	<name>acn-batch-scheduling</name>
 	<description>Module for batch scheduling</description>
 
-	<properties>
-	</properties>
-
+	<!-- DEPENDENCIES -->
 	<dependencies>
 		<!-- Logging -->
 		<dependency>
@@ -41,6 +39,7 @@
 		</dependency>
 	</dependencies>
 
+	<!-- MAVEN PLUGINS -->
 	<build>
 		<plugins>
 			<plugin>

@@ -1,50 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
 
-    <parent>
-        <groupId>com.accenture.acntech</groupId>
-        <artifactId>acn-batch-parent</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
-    </parent>
+	<parent>
+		<groupId>com.accenture.acntech</groupId>
+		<artifactId>acn-batch-parent</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
 
-    <artifactId>acn-batch-notification</artifactId>
-    <packaging>jar</packaging>
-    <name>acn-batch-notification</name>
-    <description>Module for notification project</description>
+	<artifactId>acn-batch-notification</artifactId>
+	<packaging>jar</packaging>
+	<name>acn-batch-notification</name>
+	<description>Module for notification project</description>
 
-    <!-- PROPERTIES -->
-    <properties>
-    </properties>
-
-    <!-- MODULES -->
-    <modules>
-    </modules>
-
-    <!-- REPOSITORIES -->
-    <repositories>
-    </repositories>
-
-    <!-- PLUGIN REPOSITORIES -->
-    <pluginRepositories>
-    </pluginRepositories>
-
-    <!-- DEPENDENCIES -->
-    <dependencies>
-        <dependency>
-            <groupId>javax</groupId>
-            <artifactId>javaee-api</artifactId>
-        </dependency>
-    </dependencies>
-
-    <!-- MAVEN PLUGINS -->
-    <build>
-        <plugins>
-        </plugins>
-    </build>
-
-    <!-- PROFILES -->
-    <profiles>
-    </profiles>
+	<!-- DEPENDENCIES -->
+	<dependencies>
+		<dependency>
+			<groupId>javax</groupId>
+			<artifactId>javaee-api</artifactId>
+		</dependency>
+	</dependencies>
 </project>
