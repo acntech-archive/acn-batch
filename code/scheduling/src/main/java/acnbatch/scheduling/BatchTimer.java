@@ -28,7 +28,8 @@ public abstract class BatchTimer {
 					expression.getMonth(), expression.getDayOfMonth(), expression.getHour(), expression.getMinute(),
 					expression.getSecond());
 			try {
-				timerService.createCalendarTimer(expression, schedulable().config());
+				Timer t = timerService.createCalendarTimer(expression, schedulable().config());
+                LOG.info("", t.getNextTimeout().toString());
 			} catch (Exception e) {
 				LOG.error("An error occured when trying to create timer", e);
 				throw new BatchTimerException("An error occured when trying to create timer", e);

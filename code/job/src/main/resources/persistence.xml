@@ -7,7 +7,7 @@
             <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/employee;create=true"/>
             <property name="javax.persistence.jdbc.password" value=""/>
             <property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.ClientDriver"/>
-            <property name="avax.persistence.jdbc.user" value=""/>
+            <property name="javax.persistence.jdbc.user" value=""/>
         </properties>
     </persistence-unit>
 </persistence>

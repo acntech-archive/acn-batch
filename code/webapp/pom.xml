@@ -23,6 +23,11 @@
 			<groupId>javax</groupId>
 			<artifactId>javaee-api</artifactId>
 		</dependency>
+        <dependency>
+            <groupId>com.accenture.acntech</groupId>
+            <artifactId>acn-batch-scheduling</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
 	</dependencies>
 
 	<build>

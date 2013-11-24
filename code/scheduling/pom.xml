@@ -39,6 +39,12 @@
 			<groupId>javax</groupId>
 			<artifactId>javaee-api</artifactId>
 		</dependency>
+
+        <dependency>
+            <groupId>com.accenture.acntech.webapp</groupId>
+            <artifactId>acn-batch-job</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
 	</dependencies>
 
 	<build>
