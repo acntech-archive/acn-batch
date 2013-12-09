@@ -7,9 +7,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javax.enterprise.event.Observes;
-import javax.jms.JMSException;
-import javax.jms.Message;
-import javax.jms.MessageListener;
 import javax.websocket.OnClose;
 import javax.websocket.OnMessage;
 import javax.websocket.OnOpen;
@@ -19,15 +16,16 @@ import javax.websocket.server.ServerEndpoint;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import acnbatch.events.Notify;
 import acnbatch.jms.Notification;
 
 @ServerEndpoint(Endpoints.NOTIFICATIONS)
 public class NotificationEndpoint implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	private static final Logger LOG = LoggerFactory.getLogger(MessageListener.class);
+	private static final Logger LOG = LoggerFactory.getLogger(NotificationEndpoint.class);
 
-	public static final Set<Session> sessions = Collections.synchronizedSet(new HashSet<Session>());
+	private static final Set<Session> sessions = Collections.synchronizedSet(new HashSet<Session>());
 
 	@OnOpen
 	public void onOpen(final Session session) {
@@ -56,21 +54,21 @@ public class NotificationEndpoint implements Serializable {
 		}
 	}
 
-	public void push(@Observes @NotificationEvent Message message) {
+	public void push(@Observes @Notify Notification notification) {
 		try {
 			LOG.info("Pushing notifications to websockets");
 
-			Notification notification = message.getBody(Notification.class);
-
 			for (Session session : sessions) {
 				session.getBasicRemote().sendText(
-						"Notification from source '" + notification.getSource() + "' with message '"
-								+ notification.getMessage() + "'");
+						"Notification from source '" + notification.getSource() + "' with subject '"
+								+ notification.getSubject() + "'");
 			}
 		} catch (IOException e) {
 			LOG.error("An error occured while pushing notification to websocket", e);
-		} catch (JMSException e) {
-			LOG.error("An error occured while getting message body", e);
 		}
+	}
+
+	public static int sockets() {
+		return sessions.size();
 	}
 }

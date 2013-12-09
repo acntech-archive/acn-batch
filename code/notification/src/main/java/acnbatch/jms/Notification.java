@@ -7,14 +7,14 @@ public class Notification implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private String source;
-	private String message;
+	private String subject;
 
 	public Notification() {
 	}
 
-	public Notification(String source, String message) {
+	public Notification(String source, String subject) {
 		this.source = source;
-		this.message = message;
+		this.subject = subject;
 	}
 
 	public String getSource() {
@@ -25,11 +25,11 @@ public class Notification implements Serializable {
 		this.source = source;
 	}
 
-	public String getMessage() {
-		return message;
+	public String getSubject() {
+		return subject;
 	}
 
-	public void setMessage(String message) {
-		this.message = message;
+	public void setSubject(String subject) {
+		this.subject = subject;
 	}
 }

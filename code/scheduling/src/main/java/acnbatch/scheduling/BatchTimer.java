@@ -3,7 +3,6 @@ package acnbatch.scheduling;
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.ejb.ScheduleExpression;
-import javax.ejb.Singleton;
 import javax.ejb.Timeout;
 import javax.ejb.Timer;
 import javax.ejb.TimerService;
@@ -11,7 +10,6 @@ import javax.ejb.TimerService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-@Singleton
 public abstract class BatchTimer {
 
 	private static final Logger LOG = LoggerFactory.getLogger(BatchTimer.class);

@@ -1,10 +1,10 @@
 package acnbatch.jms.notification;
 
-import javax.annotation.Resource;
-import javax.jms.ConnectionFactory;
 import javax.jms.JMSContext;
 import javax.jms.JMSProducer;
+import javax.jms.ObjectMessage;
 import javax.jms.Queue;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
@@ -12,40 +12,42 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
+import acnbatch.jms.Notification;
+import acnbatch.jms.NotificationSender;
+
 public class NotificationSenderTest {
 
-    @Mock
-    ConnectionFactory connectionFactory;
+	@InjectMocks
+	private NotificationSender notificationSender;
 
-    @Mock
-    Queue queue;
-    
-    @Mock
-    JMSContext jmsContext;
-   
-    @Mock
-    JMSProducer jmsProducer;
-    
-    
-    
-    @InjectMocks
-    NotificationSender notificationSender;
-    
-    @Before
-    public void setup(){
-        MockitoAnnotations.initMocks(this);
-    }
-    
-    @Test
-    public void testSendMessage() {
-        
-        Mockito.when(connectionFactory.createContext()).thenReturn(jmsContext);
-        Mockito.when(jmsContext.createProducer()).thenReturn(jmsProducer);
-        
-        notificationSender.sendMessage("TestMessage");
-        
-        Mockito.verify(connectionFactory).createContext();
-        Mockito.verify(jmsContext).createProducer();
-        Mockito.verify(jmsProducer).send(queue, "TestMessage");  
-    }          
+	@Mock
+	private Queue queue;
+
+	@Mock
+	private JMSContext jmsContext;
+
+	@Mock
+	private JMSProducer jmsProducer;
+
+	@Mock
+	private ObjectMessage message;
+
+	@Before
+	public void setup() {
+		MockitoAnnotations.initMocks(this);
+	}
+
+	@Test
+	public void testSendMessage() {
+		Mockito.when(jmsContext.createProducer()).thenReturn(jmsProducer);
+		Mockito.when(jmsContext.createObjectMessage(Mockito.any(Notification.class))).thenReturn(message);
+
+		notificationSender.send("Test", "TestMessage");
+
+		Mockito.verify(jmsContext).createObjectMessage(Mockito.any(Notification.class));
+		Mockito.verify(jmsContext).createProducer();
+		Mockito.verifyNoMoreInteractions(jmsContext);
+		Mockito.verify(jmsProducer).send(queue, message);
+		Mockito.verifyNoMoreInteractions(jmsContext);
+	}
 }

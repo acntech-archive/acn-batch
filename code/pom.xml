@@ -4,10 +4,10 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.accenture.acntech</groupId>
-	<artifactId>acn-batch-parent</artifactId>
+	<artifactId>acn-batch</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
-	<name>acn-batch-parent</name>
+	<name>acn-batch</name>
 	<description>Parent project</description>
 
 	<!-- PROPERTIES -->
@@ -54,7 +54,7 @@
 		<module>scheduling</module>
 		<module>webapp</module>
 		<module>job</module>
-                <module>acn-batch-ultimate</module>
+		<module>acn-batch-ultimate</module>
 	</modules>
 
 	<!-- REPOSITORIES -->

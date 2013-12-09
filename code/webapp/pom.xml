@@ -15,6 +15,10 @@
 
 	<!-- DEPENDENCIES -->
 	<dependencies>
+		<dependency>
+			<groupId>com.accenture.acntech</groupId>
+			<artifactId>acn-batch-notification</artifactId>
+		</dependency>
 	</dependencies>
 
 	<!-- MAVEN PLUGINS -->
