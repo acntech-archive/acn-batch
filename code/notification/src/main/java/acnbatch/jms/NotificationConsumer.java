@@ -10,6 +10,7 @@ import javax.jms.MessageListener;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import acnbatch.domain.Notification;
 import acnbatch.events.Notify;
 import acnbatch.websocket.NotificationEndpoint;
 

@@ -12,7 +12,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
-import acnbatch.jms.Notification;
+import acnbatch.domain.Notification;
 import acnbatch.jms.NotificationSender;
 
 public class NotificationSenderTest {

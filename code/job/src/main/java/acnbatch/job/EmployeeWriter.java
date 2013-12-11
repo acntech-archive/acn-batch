@@ -14,18 +14,25 @@ import acnbatch.job.domain.EmployeeOutputRecord;
 @Named
 public class EmployeeWriter extends AbstractItemWriter {
 
-    @PersistenceContext
-    private EntityManager em;
+	private static final String NOTIFICATION_SOURCE = EmployeeWriter.class.getSimpleName();
 
-    @Inject
-    private NotificationSender notificationSender;
+	@PersistenceContext
+	private EntityManager em;
 
-    @Override
-    public void writeItems(List list) {
-        System.out.println("writeItems: " + list);
-        for (Object employee : list) {
-            em.persist(employee);
-            notificationSender.send("EmployeeWriter", "Employee inserted. Id: " + ((EmployeeOutputRecord) employee).getId());
-        }
-    }
+	@Inject
+	private NotificationSender notificationSender;
+
+	@Override
+	public void writeItems(@SuppressWarnings("rawtypes") List list) {
+		System.out.println("writeItems: " + list);
+		try {
+			for (Object employee : list) {
+				em.persist(employee);
+				notificationSender.send(NOTIFICATION_SOURCE, "Employee inserted. Id: "
+						+ ((EmployeeOutputRecord) employee).getId());
+			}
+		} catch (Exception e) {
+			notificationSender.error(NOTIFICATION_SOURCE, e);
+		}
+	}
 }

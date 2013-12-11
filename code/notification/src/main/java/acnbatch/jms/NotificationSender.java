@@ -9,6 +9,9 @@ import javax.jms.Queue;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import acnbatch.domain.Notification;
+import acnbatch.domain.Type;
+
 public class NotificationSender {
 
 	private static final Logger LOG = LoggerFactory.getLogger(NotificationSender.class);
@@ -27,5 +30,9 @@ public class NotificationSender {
 		LOG.info("Sending notification with subject '{}'", notification.getSubject());
 		Message message = jmsContext.createObjectMessage(notification);
 		jmsContext.createProducer().send(queue, message);
+	}
+
+	public void error(String source, Throwable throwable) {
+		send(new Notification(source, Type.ERROR, throwable.getMessage()));
 	}
 }
