@@ -3,8 +3,11 @@ package acnbatch.job.domain;
 public class EmployeeInputRecord {
 
     private String personalNumber;
+
     private String name;
+
     private String email;
+
     private String phone;
 
     private String enterpriseId;

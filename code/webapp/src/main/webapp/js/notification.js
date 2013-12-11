@@ -7,7 +7,7 @@ function f_onmessage(evt) {
 
 function open() {
 	if (!websocketSession) {
-		websocketSession = new WebSocket('ws://' + document.location.host + '/acn-batch-webapp/api/notifications');
+		websocketSession = new WebSocket('ws://' + document.location.host + '/webapp/api/notifications');
 		websocketSession.onmessage = f_onmessage;
 	}
 }

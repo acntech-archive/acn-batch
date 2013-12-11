@@ -22,53 +22,55 @@ import acnbatch.jms.Notification;
 @ServerEndpoint(Endpoints.NOTIFICATIONS)
 public class NotificationEndpoint implements Serializable {
 
-	private static final long serialVersionUID = 1L;
-	private static final Logger LOG = LoggerFactory.getLogger(NotificationEndpoint.class);
+    private static final long serialVersionUID = 1L;
+    private static final Logger LOG = LoggerFactory.getLogger(NotificationEndpoint.class);
 
-	private static final Set<Session> sessions = Collections.synchronizedSet(new HashSet<Session>());
+    private static final Set<Session> sessions = Collections.synchronizedSet(new HashSet<Session>());
 
-	@OnOpen
-	public void onOpen(final Session session) {
-		try {
-			session.getBasicRemote().sendText("Websocket session opened");
-			sessions.add(session);
-			LOG.info("Websocket session opened");
-		} catch (IOException e) {
-			LOG.error("An error occured while opening websocket session", e);
-		}
-	}
+    @OnOpen
+    public void onOpen(final Session session) {
+        try {
+            session.getBasicRemote().sendText("Websocket session opened");
+            sessions.add(session);
+            LOG.info("Websocket session opened");
+        } catch (IOException e) {
+            LOG.error("An error occured while opening websocket session", e);
+        }
+    }
 
-	@OnMessage
-	public void onMessage(final String message, final Session client) {
-		LOG.info("Message revieved from websocket '" + message + "'");
-	}
+    @OnMessage
+    public void onMessage(final String message, final Session client) {
+        LOG.info("Message revieved from websocket '" + message + "'");
+    }
 
-	@OnClose
-	public void onClose(final Session session) {
-		try {
-			session.getBasicRemote().sendText("WebSocket session closed");
-			sessions.remove(session);
-			LOG.info("Websocket session closed");
-		} catch (IOException e) {
-			LOG.error("An error occured while closing websocket session", e);
-		}
-	}
+    @OnClose
+    public void onClose(final Session session) {
+        try {
+            session.getBasicRemote().sendText("WebSocket session closed");
+            sessions.remove(session);
+            LOG.info("Websocket session closed");
+        } catch (IOException e) {
+            LOG.error("An error occured while closing websocket session", e);
+        }
+    }
 
-	public void push(@Observes @Notify Notification notification) {
-		try {
-			LOG.info("Pushing notifications to websockets");
+    public void push(@Observes @Notify Notification notification) {
 
-			for (Session session : sessions) {
-				session.getBasicRemote().sendText(
-						"Notification from source '" + notification.getSource() + "' with subject '"
-								+ notification.getSubject() + "'");
-			}
-		} catch (IOException e) {
-			LOG.error("An error occured while pushing notification to websocket", e);
-		}
-	}
+        for (Session session : sessions) {
+            try {
+                LOG.info("Pushing notifications to websockets");
 
-	public static int sockets() {
-		return sessions.size();
-	}
+                session.getBasicRemote().sendText(
+                        "Notification from source '" + notification.getSource() + "' with subject '"
+                        + notification.getSubject() + "'");
+
+            } catch (IOException e) {
+                LOG.error("An error occured while pushing notification to websocket", e);
+            }
+        }
+    }
+
+    public static int sockets() {
+        return sessions.size();
+    }
 }

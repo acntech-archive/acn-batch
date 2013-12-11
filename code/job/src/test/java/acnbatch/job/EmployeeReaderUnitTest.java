@@ -11,6 +11,7 @@ public class EmployeeReaderUnitTest {
     private String[] remaining_names = {"Navn 2", "Navn 3", "Navn 4"};
     
 //    @Test
+    /*
     public void testReadEmployeesFromXlsx() throws Exception {
         InputStream employeeData = this.getClass().getClassLoader().getResourceAsStream("test_data.xlsx");
 
@@ -37,5 +38,5 @@ public class EmployeeReaderUnitTest {
 
         reader.close();
     }
-
+*/
 }

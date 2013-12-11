@@ -5,10 +5,10 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Chunk: CSV file -> Database</title>
+        <title>CSV-til-database Batch</title>
     </head>
     <body>
-        <h1>Process a CSV file, feed into database</h1>
-        Start the <a href="${pageContext.request.contextPath}/TestServletUltimate"/>job</a>.
+        <h1>CSV-til-database Batch</h1>
+        Start <a href="${pageContext.request.contextPath}/BatchTestServlet"/>jobben</a>.
     </body>
 </html>

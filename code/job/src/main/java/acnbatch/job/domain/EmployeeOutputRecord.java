@@ -4,22 +4,40 @@ import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  *
  * @author fagerholm
  */
 @Entity
+@Table(name ="EMPLOYEE")
 public class EmployeeOutputRecord implements Serializable {
     
     @Id
     @GeneratedValue
     private Long id;
+
     private String personalNumber;
+
     private String name;
+
     private String email;
+
     private String phone;
+
     private String enterpriseId;
+
+    public EmployeeOutputRecord() {
+    }
+
+    public EmployeeOutputRecord(EmployeeInputRecord record) {
+        personalNumber = record.getPersonalNumber();
+        name = record.getName();
+        email = record.getEmail();
+        phone = record.getPhone();
+        enterpriseId = record.getEnterpriseId();
+    }
 
     public Long getId() {
         return id;

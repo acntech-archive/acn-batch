@@ -1,0 +1,10 @@
+<job id="employeeJob" xmlns="http://xmlns.jcp.org/xml/ns/javaee" version="1.0">
+    <step id="employeeStep" >
+        <chunk item-count="3">
+            <reader ref="employeeReader"/>
+            <processor ref="employeeProcessor"/>
+            <writer ref="employeeWriter"/>
+        </chunk>	
+    </step>
+</job>
+

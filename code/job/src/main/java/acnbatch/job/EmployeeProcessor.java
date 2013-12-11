@@ -1,40 +1,36 @@
 package acnbatch.job;
 
-import acnbatch.job.domain.EmployeeInputRecord;
-import org.apache.commons.validator.EmailValidator;
-
+import acnbatch.jms.NotificationSender;
+import acnbatch.job.domain.EmployeeOutputRecord;
+import java.text.SimpleDateFormat;
+import java.util.StringTokenizer;
 import javax.batch.api.chunk.ItemProcessor;
+import javax.inject.Inject;
 import javax.inject.Named;
 
-/**
- * GLHFDDDFU! Don't forget to commit!
- */
 @Named
-public class EmployeeProcessor implements ItemProcessor
-{
+public class EmployeeProcessor implements ItemProcessor {
+
+    SimpleDateFormat format = new SimpleDateFormat("M/dd/yy");
+
+    @Inject
+    private NotificationSender notificationSender;
+
     @Override
-    public Object processItem(Object item) throws Exception
-    {
-        // Cast because we're not dealing with generics...
-        EmployeeInputRecord record = (EmployeeInputRecord) item;
+    public EmployeeOutputRecord processItem(Object t) {
+        System.out.println("processItem: " + t);
 
-        // Filter out if invalid.
-        if (!EmployeeProcessor.isValid(record))
-        {
-            return null;
-        }
+        StringTokenizer tokens = new StringTokenizer((String) t, ";");
 
-        return item;
-    }
+        EmployeeOutputRecord output = new EmployeeOutputRecord();
+        output.setName(tokens.nextToken());
+        output.setPersonalNumber(tokens.nextToken());
+        output.setEmail(tokens.nextToken());
+        output.setEnterpriseId(tokens.nextToken());
+        output.setPhone(tokens.nextToken());
+        
+        notificationSender.send("EmployeeProcessor", "Employee created. PersonalNumber: " + output.getPersonalNumber());
 
-    /**
-     * Validates the entire record. TODO: Only email is currently validated.
-     */
-    private static boolean isValid(EmployeeInputRecord record)
-    {
-        final String email = record.getEmail();
-
-        return EmailValidator.getInstance().isValid(email)
-                && email.matches(".*\\..*@.*");
+        return output;
     }
 }

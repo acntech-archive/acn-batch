@@ -16,25 +16,25 @@ import acnbatch.websocket.NotificationEndpoint;
 @MessageDriven(mappedName = Resources.NOTIFICATION_QUEUE)
 public class NotificationConsumer implements MessageListener {
 
-	private static final Logger LOG = LoggerFactory.getLogger(NotificationConsumer.class);
+    private static final Logger LOG = LoggerFactory.getLogger(NotificationConsumer.class);
 
-	@Inject
-	@Notify
-	private Event<Notification> notify;
+    @Inject
+    @Notify
+    private Event<Notification> notify;
 
-	@Override
-	public void onMessage(Message message) {
-		try {
-			Notification notification = message.getBody(Notification.class);
+    @Override
+    public void onMessage(Message message) {
+        try {
+            Notification notification = message.getBody(Notification.class);
 
-			LOG.info("Notification recieved from source '{}' with subject '{}'", notification.getSource(),
-					notification.getSubject());
+            LOG.info("Notification recieved from source '{}' with subject '{}'", notification.getSource(),
+                    notification.getSubject());
 
-			LOG.info("Active websocket sessions: {}", NotificationEndpoint.sockets());
+            LOG.info("Active websocket sessions: {}", NotificationEndpoint.sockets());
 
-			notify.fire(notification);
-		} catch (JMSException e) {
-			LOG.error("An error occured when recieving message", e);
-		}
-	}
+            notify.fire(notification);
+        } catch (JMSException e) {
+            LOG.error("An error occured when recieving message", e);
+        }
+    }
 }

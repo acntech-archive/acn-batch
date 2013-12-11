@@ -1,76 +1,48 @@
 package acnbatch.job;
 
-import acnbatch.job.domain.EmployeeInputRecord;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.ss.usermodel.WorkbookFactory;
-
-import javax.batch.api.chunk.AbstractItemReader;
-import javax.inject.Named;
-import java.io.InputStream;
+import acnbatch.jms.NotificationSender;
+import acnbatch.job.domain.EmployeeOutputRecord;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.Serializable;
-import java.util.Iterator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.batch.api.chunk.AbstractItemReader;
+import javax.inject.Inject;
+import javax.inject.Named;
 
 @Named
 public class EmployeeReader extends AbstractItemReader {
 
-    public static final int CELL_EMPLOYEE_NAME = 0;
+    private BufferedReader reader;
 
-    public static final int CELL_EMPLOYEE_PERSONAL_NUMBER = 1;
-
-    public static final int CELL_EMPLOYEE_EMAIL = 2;
-
-    public static final int CELL_ENTERPRISE_ID = 3;
-
-    private InputStream inputStream;
-
-    private Iterator<Row> rowIterator;
-
-    public void setInputStream(InputStream inputStream) {
-        this.inputStream = inputStream;
-    }
-
-    private InputStream getInputStream() {
-        if (inputStream == null) {
-            return getClass().getClassLoader().getResourceAsStream("test_data.xlsx");
-        }
-        return inputStream;
-    }
+    @Inject
+    private NotificationSender notificationSender;
 
     @Override
     public void open(Serializable checkpoint) throws Exception {
-        Workbook workbook = WorkbookFactory.create(getInputStream());
-
-        rowIterator = workbook.getSheetAt(0).rowIterator();
-        if (rowIterator.hasNext()) {
-            rowIterator.next(); // Skip header
-        }
+        reader = new BufferedReader(
+                new InputStreamReader(
+                        this
+                        .getClass()
+                        .getClassLoader()
+                        .getResourceAsStream("/META-INF/mydata.csv")
+                )
+        );
     }
 
     @Override
-    public EmployeeInputRecord readItem() throws Exception {
-        if (!rowIterator.hasNext()) {
-            return null;
+    public String readItem() {
+        String line;
+        try {
+            line = reader.readLine();
+            notificationSender.send("EmployeeReader", "Employee read: " + line);
+            return line;
+
+        } catch (IOException ex) {
+            Logger.getLogger(EmployeeReader.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-        Row row = rowIterator.next();
-
-        if (row.getLastCellNum() == -1) {
-            // Row doesn't contain any cells
-            return null;
-        }
-
-        EmployeeInputRecord employeeInputRecord = new EmployeeInputRecord();
-        employeeInputRecord.setName(row.getCell(CELL_EMPLOYEE_NAME).getStringCellValue());
-        employeeInputRecord.setPersonalNumber(Integer.toString((int) row.getCell(CELL_EMPLOYEE_PERSONAL_NUMBER).getNumericCellValue()));
-        employeeInputRecord.setEmail(row.getCell(CELL_EMPLOYEE_EMAIL).getStringCellValue());
-        employeeInputRecord.setEnterpriseId(row.getCell(CELL_ENTERPRISE_ID).getStringCellValue());
-
-        return employeeInputRecord;
-    }
-
-    @Override
-    public void close() throws Exception {
-        inputStream.close();
+        return null;
     }
 }
