@@ -1,47 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
 
-    <parent>
-        <groupId>com.accenture.acntech</groupId>
-        <artifactId>acn-batch</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
-    </parent>
+	<parent>
+		<groupId>com.accenture.acntech</groupId>
+		<artifactId>acn-batch</artifactId>
+		<version>0.0.1</version>
+	</parent>
 
-    <artifactId>acn-batch-webapp</artifactId>
-    <packaging>war</packaging>
-    <name>acn-batch-webapp</name>
+	<artifactId>acn-batch-webapp</artifactId>
+	<packaging>war</packaging>
+	<name>acn-batch-webapp</name>
 
-    <!-- DEPENDENCIES -->
-    <dependencies>
-        <dependency>
-            <groupId>com.accenture.acntech</groupId>
-            <artifactId>acn-batch-notification</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.accenture.acntech</groupId>
-            <artifactId>acn-batch-job</artifactId>
-        </dependency>
-    </dependencies>
+	<!-- DEPENDENCIES -->
+	<dependencies>
+		<dependency>
+			<groupId>com.accenture.acntech</groupId>
+			<artifactId>acn-batch-notification</artifactId>
+		</dependency>
 
-    <!-- MAVEN PLUGINS -->
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-            </plugin>
+		<dependency>
+			<groupId>com.accenture.acntech</groupId>
+			<artifactId>acn-batch-job</artifactId>
+		</dependency>
+	</dependencies>
 
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-war-plugin</artifactId>
-            </plugin>
+	<!-- MAVEN PLUGINS -->
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+			</plugin>
 
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-dependency-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </build>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
 </project>
