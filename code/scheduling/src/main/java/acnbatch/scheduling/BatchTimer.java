@@ -19,17 +19,22 @@ public abstract class BatchTimer {
 
 	@PostConstruct
 	public void create() {
-		if (schedulable() != null && schedulable().expression() != null) {
+		if (schedulable() != null) {
 			ScheduleExpression expression = schedulable().expression();
 
-			LOG.info("Creating timer for scheduer {} with schedule {}M {}D {}h {}m {}s", schedulable().name(),
-					expression.getMonth(), expression.getDayOfMonth(), expression.getHour(), expression.getMinute(),
-					expression.getSecond());
-			try {
-				timerService.createCalendarTimer(expression, schedulable().config());
-			} catch (Exception e) {
-				LOG.error("An error occured when trying to create timer", e);
-				throw new BatchTimerException("An error occured when trying to create timer", e);
+			if (expression != null) {
+				LOG.info("Creating timer for scheduer {} with schedule {}M {}D {}h {}m {}s", schedulable().name(),
+						expression.getMonth(), expression.getDayOfMonth(), expression.getHour(),
+						expression.getMinute(), expression.getSecond());
+				try {
+					timerService.createCalendarTimer(expression, schedulable().config());
+				} catch (Exception e) {
+					LOG.error("An error occured when trying to create timer", e);
+					throw new BatchTimerException("An error occured when trying to create timer", e);
+				}
+			} else {
+				LOG.error("Schedule expression is not set. Unable to continue");
+				throw new BatchTimerException("Schedule expression is not set");
 			}
 		} else {
 			LOG.error("Schedulable is not set. Unable to continue");

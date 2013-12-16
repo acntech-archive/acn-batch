@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 
 import acnbatch.domain.Notification;
 import acnbatch.events.Notify;
+import acnbatch.metadata.Resources;
 import acnbatch.websocket.NotificationEndpoint;
 
 @MessageDriven(mappedName = Resources.NOTIFICATION_QUEUE)

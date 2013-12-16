@@ -1,4 +1,4 @@
-package acnbatch.job.domain;
+package acnbatch.entities;
 
 public class EmployeeInputRecord {
 

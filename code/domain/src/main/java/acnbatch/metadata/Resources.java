@@ -1,4 +1,4 @@
-package acnbatch.jms;
+package acnbatch.metadata;
 
 public interface Resources {
 

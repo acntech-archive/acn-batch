@@ -19,6 +19,7 @@ import org.slf4j.LoggerFactory;
 
 import acnbatch.domain.Notification;
 import acnbatch.events.Notify;
+import acnbatch.metadata.Endpoints;
 
 @ServerEndpoint(Endpoints.NOTIFICATIONS)
 public class NotificationEndpoint implements Serializable {

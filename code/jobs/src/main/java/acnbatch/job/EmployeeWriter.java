@@ -8,8 +8,8 @@ import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import acnbatch.entities.EmployeeOutputRecord;
 import acnbatch.jms.NotificationSender;
-import acnbatch.job.domain.EmployeeOutputRecord;
 
 @Named
 public class EmployeeWriter extends AbstractItemWriter {

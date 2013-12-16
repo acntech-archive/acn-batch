@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 
 import acnbatch.domain.Notification;
 import acnbatch.domain.Type;
+import acnbatch.metadata.Resources;
 
 public class NotificationSender {
 
@@ -33,6 +34,6 @@ public class NotificationSender {
 	}
 
 	public void error(String source, Throwable throwable) {
-		send(new Notification(source, Type.ERROR, throwable.getMessage()));
+		send(new Notification(Type.ERROR, source, throwable.getMessage()));
 	}
 }

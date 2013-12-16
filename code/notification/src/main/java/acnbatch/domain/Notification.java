@@ -6,8 +6,8 @@ public class Notification implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private String source;
 	private Type type;
+	private String source;
 	private String subject;
 	private String details;
 
@@ -15,30 +15,22 @@ public class Notification implements Serializable {
 	}
 
 	public Notification(String source, String subject) {
-		this(source, Type.INFO, subject);
+		this(Type.INFO, source, subject);
 	}
 
-	public Notification(String source, Type type, String subject) {
-		this(source, type, subject, null);
+	public Notification(Type type, String source, String subject) {
+		this(type, source, subject, null);
 	}
 
 	public Notification(String source, String subject, String details) {
-		this(source, Type.INFO, subject, details);
+		this(Type.INFO, source, subject, details);
 	}
 
-	public Notification(String source, Type type, String subject, String details) {
-		this.source = source;
+	public Notification(Type type, String source, String subject, String details) {
 		this.type = type;
+		this.source = source;
 		this.subject = subject;
 		this.details = details;
-	}
-
-	public String getSource() {
-		return source;
-	}
-
-	public void setSource(String source) {
-		this.source = source;
 	}
 
 	public Type getType() {
@@ -47,6 +39,14 @@ public class Notification implements Serializable {
 
 	public void setType(Type type) {
 		this.type = type;
+	}
+
+	public String getSource() {
+		return source;
+	}
+
+	public void setSource(String source) {
+		this.source = source;
 	}
 
 	public String getSubject() {

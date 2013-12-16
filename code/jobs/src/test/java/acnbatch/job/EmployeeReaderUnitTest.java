@@ -1,10 +1,5 @@
 package acnbatch.job;
 
-import acnbatch.job.domain.EmployeeInputRecord;
-import org.junit.Assert;
-import org.junit.Test;
-
-import java.io.InputStream;
 
 public class EmployeeReaderUnitTest {
 

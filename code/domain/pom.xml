@@ -9,20 +9,7 @@
 		<version>0.0.2-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>acn-batch-webapp</artifactId>
-	<packaging>war</packaging>
-	<name>acn-batch-webapp</name>
-
-	<!-- DEPENDENCIES -->
-	<dependencies>
-		<dependency>
-			<groupId>com.accenture.acntech</groupId>
-			<artifactId>acn-batch-notification</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>com.accenture.acntech</groupId>
-			<artifactId>acn-batch-job</artifactId>
-		</dependency>
-	</dependencies>
+	<artifactId>acn-batch-domain</artifactId>
+	<packaging>jar</packaging>
+	<name>acn-batch-domain</name>
 </project>

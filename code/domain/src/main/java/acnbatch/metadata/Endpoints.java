@@ -1,4 +1,4 @@
-package acnbatch.websocket;
+package acnbatch.metadata;
 
 public interface Endpoints {
 
