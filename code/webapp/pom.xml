@@ -22,7 +22,7 @@
 
 		<dependency>
 			<groupId>com.accenture.acntech</groupId>
-			<artifactId>acn-batch-job</artifactId>
+			<artifactId>acn-batch-jobs</artifactId>
 		</dependency>
 	</dependencies>
 </project>
